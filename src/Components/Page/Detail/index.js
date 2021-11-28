@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from "react";
 import styled from "@emotion/styled/macro";
 import { useNavigate } from "react-router-dom";
