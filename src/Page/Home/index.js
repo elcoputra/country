@@ -1,13 +1,24 @@
 import React from "react";
 import styled from "@emotion/styled/macro";
+import { useNavigate } from "react-router-dom";
 
+// hooks
+import useSearchResult from "../../Hooks/useSearch";
+
+// Component
 import TitleB from "../../Components/Text/Title/index";
 import RegularInput from "../../Components/Input/Regular";
 
 const Index = () => {
-  const handleChange = (val) => {
-    console.log(val);
-  };
+  const navigate = useNavigate();
+  const refSearch = React.useRef(null);
+  const [searchPosition, setSearchPosition] = React.useState(null);
+
+  const { handleChange, searchResult } = useSearchResult();
+
+  React.useEffect(() => {
+    setSearchPosition(refSearch.current.getBoundingClientRect());
+  }, [refSearch]);
 
   return (
     <Container id="Container-home">
@@ -18,6 +29,7 @@ const Index = () => {
         style={{ marginTop: 263, marginBottom: 43, fontWeight: 700 }}
       />
       <RegularInput
+        innerRef={refSearch}
         handleChange={handleChange}
         id={"text-search"}
         type="text"
@@ -27,17 +39,67 @@ const Index = () => {
         icon="search"
         placeholder="Type any country name"
       />
+      {searchPosition && !searchResult.error && (
+        <ContainerResult top={searchPosition.bottom}>
+          {searchResult?.data?.map(
+            (item, index) =>
+              index <= 4 && (
+                <ButtonNav
+                  key={index}
+                  onClick={() =>
+                    navigate(`/detail?country=${item.name.common}`, {
+                      state: searchResult,
+                    })
+                  }
+                >
+                  {item.name.common}
+                </ButtonNav>
+              )
+          )}
+        </ContainerResult>
+      )}
     </Container>
   );
 };
 
-export const Container = styled.div`
+const ButtonNav = styled.button`
+  height: 40px;
+  padding-left: 25px;
+  padding-top: 9px;
+  padding-bottom: 10px;
+  background-color: transparent;
+  text-align: start;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: "SFProTextRegular";
+  font-size: 18px;
+  &:hover {
+    background-color: #f4f4f4;
+  }
+`;
+const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
+  margin: 0 auto;
+  max-width: 48rem;
+  width: 90%;
   align-items: center;
+`;
+
+const ContainerResult = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 700px;
+  top: 460px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+  background: #ffffff;
+  box-shadow: -4px -4px 4px rgba(0, 0, 0, 0.02), 4px 4px 4px rgba(0, 0, 0, 0.02);
+  border-radius: 5px;
 `;
 
 export default Index;

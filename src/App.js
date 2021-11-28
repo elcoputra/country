@@ -20,8 +20,7 @@ function App() {
 export const Container = styled.div`
   display: flex;
   flex-direction: columns;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
 `;
 
 export default App;

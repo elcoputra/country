@@ -2,14 +2,15 @@ import * as React from "react";
 import styled from "@emotion/styled/macro";
 import { useNavigate } from "react-router-dom";
 
-// Hooks
+// hooks
 import useQuery from "../../Hooks/useQuery";
 
 const Index = () => {
-  const query = useQuery();
+  const { query, state } = useQuery();
   const navigate = useNavigate();
 
   const [countryState, setCountryState] = React.useState("");
+  const [detail, setDetail] = React.useState({});
 
   React.useEffect(() => {
     const country = query.get("country");
@@ -19,7 +20,16 @@ const Index = () => {
     setCountryState(country);
   }, [navigate, query]);
 
-  return <Container id="Container-detail">{countryState}</Container>;
+  React.useEffect(() => {
+    if (state.data) {
+      const data = [...state.data];
+      const result = data.find((item) => item.name.common === countryState);
+      setDetail(result);
+    } else {
+    }
+  }, [countryState, state]);
+
+  return <Container id="Container-detail">{detail?.name?.common}</Container>;
 };
 
 export const Container = styled.div`

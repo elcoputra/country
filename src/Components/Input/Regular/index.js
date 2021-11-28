@@ -11,12 +11,14 @@ const Index = ({
   height = 60,
   icon = "",
   placeholder = "Placeholder",
+  innerRef,
   handleChange = () => {},
 }) => {
   const [inputFocus, setInputFocus] = React.useState(false);
 
   return (
     <ContainerInput
+      ref={innerRef}
       id={"container-" + id}
       type={type}
       name={name}
