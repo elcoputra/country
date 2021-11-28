@@ -13,3 +13,9 @@ body {
     url("./fonts/SFProText-Regular.ttf") format("truetype");
   font-weight: normal;
 }
+@font-face {
+  font-family: "SFProTextBold";
+  src: local("SFProTextBold"),
+    url("./fonts/SFProText-Bold.ttf") format("truetype");
+  font-weight: normal;
+}
