@@ -57,6 +57,9 @@ export const ContainerInput = styled.div`
   border: 2px solid ${(props) => props.borderColor};
   box-sizing: border-box;
   border-radius: 10px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const Input = styled.input`

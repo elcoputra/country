@@ -11,6 +11,7 @@ const DetailTitle = ({ title, chipMap }) => {
     <>
       <TitleBoldAtom
         size={72}
+        mobileSize={40}
         text={<p style={{ marginBottom: 0 }}>{title}</p>}
         width="auto"
         style={{ fontWeight: 700, marginTop: 50, marginBottom: 0 }}

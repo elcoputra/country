@@ -47,6 +47,9 @@ const CardContainer = styled.div`
     margin-right: 0px;
     margin-bottom: 25px;
   }
+  @media (max-width: 768px) {
+    min-width: 100%;
+  }
 `;
 
 export default Card;

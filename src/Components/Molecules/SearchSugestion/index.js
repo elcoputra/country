@@ -48,6 +48,9 @@ const ContainerResult = styled.div`
   background: #ffffff;
   box-shadow: -4px -4px 4px rgba(0, 0, 0, 0.02), 4px 4px 4px rgba(0, 0, 0, 0.02);
   border-radius: 5px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const ButtonNav = styled.button`
