@@ -21,7 +21,7 @@ const Index = () => {
   }, [navigate, query]);
 
   React.useEffect(() => {
-    if (state.data) {
+    if (state?.data) {
       const data = [...state.data];
       const result = data.find((item) => item.name.common === countryState);
       setDetail(result);

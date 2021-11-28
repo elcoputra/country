@@ -14,7 +14,7 @@ const Index = () => {
   const refSearch = React.useRef(null);
   const [searchPosition, setSearchPosition] = React.useState(null);
 
-  const { handleChange, searchResult } = useSearchResult();
+  const { handleChange, searchResult, searchVal, loading } = useSearchResult();
 
   React.useEffect(() => {
     setSearchPosition(refSearch.current.getBoundingClientRect());
@@ -39,28 +39,40 @@ const Index = () => {
         icon="search"
         placeholder="Type any country name"
       />
-      {searchPosition && !searchResult.error && (
+      {searchPosition && searchVal && (
         <ContainerResult top={searchPosition.bottom}>
-          {searchResult?.data?.map(
-            (item, index) =>
-              index <= 4 && (
-                <ButtonNav
-                  key={index}
-                  onClick={() =>
-                    navigate(`/detail?country=${item.name.common}`, {
-                      state: searchResult,
-                    })
-                  }
-                >
-                  {item.name.common}
-                </ButtonNav>
-              )
+          {!searchResult.error && !loading ? (
+            searchResult?.data?.map(
+              (item, index) =>
+                index <= 4 && (
+                  <ButtonNav
+                    key={index}
+                    onClick={() =>
+                      navigate(`/detail?country=${item.name.common}`, {
+                        state: searchResult,
+                      })
+                    }
+                  >
+                    {item.name.common}
+                  </ButtonNav>
+                )
+            )
+          ) : !loading ? (
+            <NotFound>Data Not Found</NotFound>
+          ) : (
+            <div>loading</div>
           )}
         </ContainerResult>
       )}
     </Container>
   );
 };
+
+const NotFound = styled.div`
+  padding-left: 25px;
+  color: #ff0000;
+  font-family: "SFProTextRegular";
+`;
 
 const ButtonNav = styled.button`
   height: 40px;
