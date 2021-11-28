@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 // icon
 import LeftArrow from "../../../Icons/leftArrow";
 
-const BackButton = ({ title = "Back to Homepage" }) => {
+const BackButton = ({ title = "Back to Homepage", path }) => {
   let navigate = useNavigate();
 
   return (
-    <Button onClick={() => navigate(-1)}>
+    <Button onClick={() => navigate(path)}>
       <LeftArrow />
       <div>{title}</div>
     </Button>

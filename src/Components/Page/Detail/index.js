@@ -57,7 +57,7 @@ const Index = () => {
   if (!detail) return <div>No Data</div>;
   return (
     <Container id="Container-detail">
-      <BackButtonAtom />
+      <BackButtonAtom path="/"/>
       <DetailTitleOrganism
         title={`${detail?.name?.common} ${detail?.flag}`}
         chipMap={detail?.altSpellings}
