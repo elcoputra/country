@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const searchCountries = async (name) => {
+const searchCountriesV3 = async (name) => {
   try {
     const res = await axios.get(`https://restcountries.com/v3.1/name/${name}`);
     return { error: false, data: res.data };
@@ -8,5 +8,13 @@ const searchCountries = async (name) => {
     return { error: true, data: null };
   }
 };
+export const searchCountriesV2 = async (name) => {
+  try {
+    const res = await axios.get(`https://restcountries.com/v2/name/${name}`);
+    return { error: false, data: res.data };
+  } catch (error) {
+    return { error: true, data: null };
+  }
+};
 
-export default searchCountries;
+export default searchCountriesV3;

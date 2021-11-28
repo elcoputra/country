@@ -12,6 +12,9 @@ const Index = ({
   icon = "",
   placeholder = "Placeholder",
   innerRef,
+  autoFocus,
+  onKeyDown,
+  autoComplete,
   handleChange = () => {},
 }) => {
   const [inputFocus, setInputFocus] = React.useState(false);
@@ -28,6 +31,9 @@ const Index = ({
     >
       <Input
         id={"input-" + id}
+        autoComplete="off"
+        onKeyDown={onKeyDown}
+        autoFocus={autoFocus}
         onChange={(e) => handleChange(e.target.value)}
         placeholder={placeholder}
         onFocus={() => setInputFocus(true)}

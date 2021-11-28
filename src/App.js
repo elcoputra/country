@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import styled from "@emotion/styled/macro";
 
 // Page
-import Home from "./Page/Home";
-import Detail from "./Page/Detail";
+import Home from "./Components/Page/Home";
+import Detail from "./Components/Page/Detail";
 
 function App() {
   return (
