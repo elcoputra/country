@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import { Container } from "./style";
 
 function Index() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return (
+    <Container id="Container-detail">
+      Detail
+    </Container>
+  );
 }
 
-export default Index
+export default Index;
